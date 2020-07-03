@@ -1,18 +1,2 @@
 
-  th {
-    background-color: #4CAF50;
-    color: white;
-  }
-  th, td {
-    padding: 15px;
-    text-align: left;
-  }
-  table {
-    border-collapse: collapse;
-    width: 50%; /*Importante manter o !important rs */
-    margin: auto;
-}
-
-table, th, td {
-    border: 1px solid black;
-  }
+  

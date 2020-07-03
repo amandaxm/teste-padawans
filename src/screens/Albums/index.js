@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import {Link } from 'react-router-dom';
+import { FiArrowLeft  } from 'react-icons/fi'
 
 import api from '../../api';
-
 class Albums extends Component {
 
   state = {
@@ -20,23 +21,45 @@ class Albums extends Component {
     const { albums } = this.state;
 
     return (
-      <div>
-        <h1>Listar os albuns</h1>
-        {albums.map(album => (
-          <li key={album.id}>
-            <h2>
-              <strong>Título: </strong>
-              {album.title}
-            </h2>
-            <p>
-              {album.id}
-            </p>
+      <div> <ul>
+      <li><Link className="link" to='/'>
+      <FiArrowLeft size={16} color="rgb(95, 52, 115)" />
 
-          </li>
-        ))}
+        Menu</Link> </li>
+
+      </ul>
+        <h1>Albuns</h1>
+            <table>
+ <tr>
+<th scope="col">Id</th>
+<th scope="col">Titulo</th>
+
+ </tr>
+     
+  {albums.map(album => (
+     
+
+            <tr>
+      <td>
+      {album.id}            
+    
+      </td>
+    
+      <td>
+      {album.title}            
+    
+      </td>
+    
+    </tr>
+        
+ 
+          ))}
+       </table>
+       
       </div>
     );
   };
+  
 };
 
 export default Albums;

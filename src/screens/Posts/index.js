@@ -1,68 +1,62 @@
 import React, { Component } from 'react';
-
+import {Link } from 'react-router-dom';
 import api from '../../api';
 import './style.css';
+import '../../style.css'
+import { FiArrowLeft  } from 'react-icons/fi'
 
 class Posts extends Component {
 
-  state = {
-    posts: [],
-  }
+state = {
+posts: [],
+}
 
-  async componentDidMount() {
+async componentDidMount() {
+
+const response = await api.get('/posts');
+
+this.setState({ posts: response.data });
+}
+
+render() {
+
+const { posts } = this.state;
+console.log(posts.length);
+return (
+
+<div>
+<ul>
+<li>
+<Link className="link" to='/'>
+        <FiArrowLeft size={16} color="rgb(95, 52, 115)" />
+
+          Menu</Link>
+          </li>
+</ul>
+    
+    <h1>Posts</h1>
+  <table>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Titulo</th>
+
+    </tr>
   
-    const response = await api.get('/posts');
 
-    this.setState({ posts: response.data });
-  }
+    {posts.map(post => (
 
-  render() {
+     <tr>
+      <td>{post.id}</td>
+      <td>{post.title}</td>
+    </tr>
+    
+    ))}
+    
+  </table>
 
-    const { posts } = this.state;
-
-    return (
-      <div>
-        <h1>Listar os posts</h1>
-        <
-          table class="table">
-  <tr>
-    <td>Coluna 1</td>
-    <td>Coluna 2</td>
-    <td>Coluna 3</td>
-  </tr>
-  <tr>
-    <td>1</td>
-    <td>2</td>
-    <td>3</td>
-  </tr>
- </table>
- 
-        {posts.map(post => (
-        <table class='table'> 
-
-        <tr>
-          <th>Id</th>
-        
-          <th>Titulo</th>
-         </tr> 
-        <h6 key={post.id} >
-        <tr>
-            <td>
-              {post.id}            
-            </td>
-          
-            <td>
-              {post.title}   
-            </td>
-      </tr>
-     </h6> 
-     </table>
- 
-           ))}
-        
-      </div>
-    );
-  };
+</div>
+);
+};
 };
 
 export default Posts;

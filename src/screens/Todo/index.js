@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import {Link } from 'react-router-dom';
+import '../../style.css';
+import { FiArrowLeft  } from 'react-icons/fi'
 
 import api from '../../api';
-
 class Todo extends Component {
 
   state = {
@@ -21,22 +23,45 @@ class Todo extends Component {
 
     return (
       <div>
-        <h1>Listar TO-DOs</h1>
-        {todos.map(todo => (
-          <li key={todo.id}>
-            <h2>
-              <strong>Título: </strong>
-              {todo.title}
-            </h2>
-            <p>
-              {todo.id}
-            </p>
+        <ul>
+        <li><Link className="link" to='/'>
+        <FiArrowLeft size={16} color="rgb(95, 52, 115)" />
 
-          </li>
-        ))}
-      </div>
-    );
-  };
-};
+          Menu</Link> </li>
 
+        </ul>
+
+        <h1>TO-DOs</h1>
+        <table>
+        <tr>
+       <th scope="col">Id</th>
+       <th scope="col">Titulo</th>
+       
+        </tr>
+            
+               {todos.map(todo => (
+            
+                   <tr>
+             <td>
+             {todo.id}            
+           
+             </td>
+           
+             <td>
+             {todo.title}            
+           
+             </td>
+           
+           </tr>
+               
+        
+                 ))}
+              </table>
+              
+             </div>
+           );
+         };
+         
+       };
+       
 export default Todo;
