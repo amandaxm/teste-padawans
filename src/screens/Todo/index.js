@@ -3,6 +3,27 @@ import {Link } from 'react-router-dom';
 import '../../style.css';
 import { FiArrowLeft  } from 'react-icons/fi'
 import api from '../../api';
+
+function myFunction() {
+   var input, filter, table, tr, td, i, txtValue;
+   input = document.getElementById("myInput");
+   filter = input.value.toUpperCase();
+   table = document.getElementById("myTable");
+   tr = table.getElementsByTagName("tr");
+ 
+   for (i = 0; i < tr.length; i++) {
+     td = tr[i].getElementsByTagName("td")[0];     
+     if (td) {
+       txtValue = td.textContent || td.innerText;
+       if (txtValue.toUpperCase().indexOf(filter) > -1) {
+         tr[i].style.display = "";
+       } else {
+         tr[i].style.display = "none";
+       }
+     }
+   }
+ }
+
 class Todo extends Component {
 state = {
 todos: [],
@@ -23,7 +44,12 @@ return (
       </li>
    </ul>
    <h1>TO-DOs</h1>
-   <table>
+   <div className="field">
+
+<input type="text" id="myInput" onKeyUp={myFunction} placeHolder="Procura por Id.."></input>
+</div>
+ <table id="myTable">
+
       <tr>
          <th scope="col">Id</th>
          <th scope="col">Titulo</th>

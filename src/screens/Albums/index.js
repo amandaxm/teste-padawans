@@ -2,6 +2,29 @@ import React, { Component } from 'react';
 import {Link } from 'react-router-dom';
 import { FiArrowLeft  } from 'react-icons/fi'
 import api from '../../api';
+
+
+function myFunction() {
+   var input, filter, table, tr, td, i, txtValue;
+   input = document.getElementById("myInput");
+   filter = input.value.toUpperCase();
+   table = document.getElementById("myTable");
+   tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+     td = tr[i].getElementsByTagName("td")[1];
+     
+     console.log('Rodei');
+     if (td) {
+       txtValue = td.textContent || td.innerText;
+       if (txtValue.toUpperCase().indexOf(filter) > -1) {
+         tr[i].style.display = "";
+       } else {
+         tr[i].style.display = "none";
+       }
+     }
+   }
+ }
+
 class Albums extends Component {
 state = {
 albums: [],
@@ -22,7 +45,12 @@ return (
       </li>
    </ul>
    <h1>Albuns</h1>
-   <table>
+   <div className="field">
+
+<input type="text" id="myInput" onKeyUp={myFunction} placeHolder="Procura por título.."></input>
+</div>
+ <table id="myTable">
+
       <tr>
          <th scope="col">Id</th>
          <th scope="col">Titulo</th>
