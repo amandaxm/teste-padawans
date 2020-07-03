@@ -3,9 +3,9 @@
 
 ### **Backend**
 
->1. $cd padawans
+>1. $cd teste-padawans
 >2. $npm install
-
+>3. $npm start
 ### Aplicação será aberta no endereço: 
 
 http://localhost:3000
